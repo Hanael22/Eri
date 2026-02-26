@@ -5,50 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Erika</title>
     <style>
-        body { 
-            margin: 0; 
-            background: #000; 
-            color: #fff; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            font-family: 'Georgia', serif; 
-            text-align: center; 
+        body {
+            margin: 0;
+            background: #000;
+            color: #d4af37;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            overflow: hidden;
         }
-        .container { width: 85%; max-width: 400px; }
-        img { 
-            width: 100%; 
-            border-radius: 15px; 
-            filter: brightness(0.7); 
-            box-shadow: 0 0 20px rgba(255,255,255,0.1); 
+
+        /* Contenedor de las flores */
+        .flower-wrapper {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
         }
-        h1 { font-size: 2.2rem; letter-spacing: 4px; text-transform: uppercase; margin: 20px 0 5px; }
-        p { opacity: 0.6; font-style: italic; margin-bottom: 30px; }
-        .hint { font-size: 0.7rem; letter-spacing: 2px; animation: pulse 2s infinite; color: #888; }
-        @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+        /* Animación de las flores (SVG) */
+        .flower-svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 10px #d4af37);
+            animation: appear 4s ease-out forwards, glow 2s infinite alternate;
+        }
+
+        /* Animación de crecimiento */
+        @keyframes appear {
+            0% { transform: scale(0); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Animación de brillo neón */
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 5px #d4af37); }
+            to { filter: drop-shadow(0 0 25px #d4af37); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 20px 0 5px;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+        }
+
+        p {
+            color: #fff;
+            opacity: 0.6;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            animation: pulse 1.5s infinite;
+            color: #d4af37;
+            cursor: pointer;
+        }
+
+        @keyframes pulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 </head>
-<body onclick="play()">
-    <div class="container">
-        <img src="https://images.pexels.com/photos/931162/pexels-photo-931162.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Flores">
-        <h1>Erika te amo</h1>
-        <p>Amor - Emmanuel Cortés</p>
-        <div class="hint">TOCA LA PANTALLA PARA LA MÚSICA</div>
+<body onclick="playSong()">
+
+    <div class="flower-wrapper">
+        <svg class="flower-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 300C100 250 100 200 100 150M100 150C80 130 50 130 30 150M100 150C120 130 150 130 170 150M100 150C100 100 70 70 100 20C130 70 100 100 100 150Z" stroke="#d4af37" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="100" cy="50" r="12" fill="#d4af37" opacity="0.8">
+                <animate attributeName="r" values="10;14;10" dur="3s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="50" cy="120" r="8" fill="#d4af37" opacity="0.6">
+                <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="150" cy="120" r="8" fill="#d4af37" opacity="0.6">
+                <animate attributeName="opacity" values="0.3;0.9;0.3" dur="2.5s" repeatCount="indefinite" />
+            </circle>
+        </svg>
     </div>
 
-    <audio id="musica" loop preaload="auto">
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    <h1>Erika te amo</h1>
+    <p>Amor - Emmanuel Cortés</p>
+    
+    <div class="hint" id="msg">TOCA PARA TI 🌹</div>
+
+    <audio id="audioTrack" loop>
+        <source src="https://files.catbox.moe/u8u3k0.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function play() {
-            var audio = document.getElementById("musica");
-            audio.play().catch(function(error) {
-                console.log("Error al reproducir: " + error);
-            });
-            document.querySelector('.hint').style.display = 'none';
+        function playSong() {
+            var audio = document.getElementById("audioTrack");
+            audio.play();
+            document.getElementById("msg").innerHTML = "ESTA ES NUESTRA CANCIÓN";
         }
     </script>
 </body>
