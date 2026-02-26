@@ -21,11 +21,11 @@
             overflow: hidden;
         }
 
-        /* Contenedor de la flor mejorada */
+        /* Contenedor de la flor animada */
         .flower-container {
             position: relative;
-            width: 250px;
-            height: 350px;
+            width: 280px;
+            height: 380px;
             animation: fadeIn 3s ease-in;
         }
 
@@ -36,8 +36,15 @@
             animation: glow 2s infinite alternate;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes glow { from { filter: drop-shadow(0 0 10px #d4af37); } to { filter: drop-shadow(0 0 30px #d4af37); } }
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        @keyframes glow { 
+            from { filter: drop-shadow(0 0 10px #d4af37); } 
+            to { filter: drop-shadow(0 0 30px #d4af37); } 
+        }
 
         h1 {
             font-size: 2.2rem;
@@ -60,7 +67,7 @@
             background: none;
             border: 1px solid #d4af37;
             color: #d4af37;
-            padding: 10px 25px;
+            padding: 12px 30px;
             font-family: 'Playfair Display', serif;
             letter-spacing: 2px;
             cursor: pointer;
@@ -71,20 +78,25 @@
 
         .btn-play:active { transform: scale(0.9); background: #d4af37; color: #000; }
 
-        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
+        @keyframes pulse { 
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 
+            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } 
+        }
     </style>
 </head>
 <body>
 
     <div class="flower-container">
-        <svg class="flower-svg" viewBox="0 0 200 300">
-            <path d="M100 280 Q100 200 100 150" stroke="#d4af37" stroke-width="3" fill="none"/>
-            <path d="M100 150 Q70 130 50 150 Q70 170 100 150" fill="#d4af37" opacity="0.8"/>
-            <path d="M100 150 Q130 130 150 150 Q130 170 100 150" fill="#d4af37" opacity="0.8"/>
-            <path d="M100 150 C80 100 50 100 40 130 C40 80 80 50 100 80 C120 50 160 80 160 130 C150 100 120 100 100 150" fill="#d4af37"/>
-            <circle cx="100" cy="110" r="15" fill="#000" stroke="#d4af37" stroke-width="1"/>
-            <circle cx="100" cy="110" r="5" fill="#d4af37">
-                <animate attributeName="opacity" values="0.2;1;0.2" dur="2s" repeatCount="indefinite" />
+        <svg class="flower-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 280 Q100 220 100 160" stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M100 160 Q60 140 40 160 Q60 180 100 160" fill="#d4af37" opacity="0.7"/>
+            <path d="M100 160 Q140 140 160 160 Q140 180 100 160" fill="#d4af37" opacity="0.7"/>
+            <path d="M100 160 C70 100 30 110 30 150 C30 80 80 40 100 80 C120 40 170 80 170 150 C170 110 130 100 100 160" fill="#d4af37"/>
+            <circle cx="100" cy="115" r="18" fill="#000" stroke="#d4af37" stroke-width="1.5"/>
+            <circle cx="100" cy="115" r="6" fill="#d4af37">
+                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
             </circle>
         </svg>
     </div>
@@ -95,7 +107,7 @@
     <button class="btn-play" onclick="playMusic()" id="btnText">TOCAR PARA TI 🌹</button>
 
     <audio id="musica" loop>
-        <source src="https://www.mboxdrive.com/Amor-EmmanuelCortes.mp3" type="audio/mpeg">
+        <source src="https://files.catbox.moe/u8u3k0.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -103,9 +115,9 @@
             var audio = document.getElementById("musica");
             audio.play().catch(function(error) {
                 console.log("Error de reproducción:", error);
-                alert("Dale permiso al navegador para sonar");
             });
-            document.getElementById("btnText").style.display = "none";
+            document.getElementById("btnText").innerHTML = "NUESTRA CANCIÓN ✨";
+            document.getElementById("btnText").style.animation = "none";
         }
     </script>
 </body>
