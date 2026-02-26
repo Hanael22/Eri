@@ -21,7 +21,6 @@
             overflow: hidden;
         }
 
-        /* Contenedor de la flor animada */
         .flower-container {
             position: relative;
             width: 280px;
@@ -102,22 +101,25 @@
     </div>
 
     <h1>Erika te amo</h1>
-    <p>Amor - Emmanuel Cortés</p>
+    <p>Nadie va a pensar en ti mejor que yo - Kevin Kaarl</p>
 
     <button class="btn-play" onclick="playMusic()" id="btnText">TOCAR PARA TI 🌹</button>
 
     <audio id="musica" loop>
-        <source src="https://files.catbox.moe/u8u3k0.mp3" type="audio/mpeg">
+        <source src="https://files.catbox.moe/0v74ly.mp3" type="audio/mpeg">
     </audio>
 
     <script>
         function playMusic() {
             var audio = document.getElementById("musica");
-            audio.play().catch(function(error) {
-                console.log("Error de reproducción:", error);
+            audio.load();
+            audio.play().then(() => {
+                document.getElementById("btnText").innerHTML = "NUESTRA CANCIÓN ✨";
+                document.getElementById("btnText").style.animation = "none";
+            }).catch(function(error) {
+                console.log("Error:", error);
+                alert("Intenta tocar el botón de nuevo");
             });
-            document.getElementById("btnText").innerHTML = "NUESTRA CANCIÓN ✨";
-            document.getElementById("btnText").style.animation = "none";
         }
     </script>
 </body>
