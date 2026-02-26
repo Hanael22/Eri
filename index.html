@@ -5,121 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Erika</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-
         body {
             margin: 0;
-            background: radial-gradient(circle, #111 0%, #000 100%);
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
             color: #d4af37;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Georgia', serif;
             text-align: center;
             overflow: hidden;
         }
 
-        .flower-container {
-            position: relative;
-            width: 280px;
-            height: 380px;
-            animation: fadeIn 3s ease-in;
+        /* Flor Neón Dorada Estilizada */
+        .flower {
+            width: 200px;
+            height: 250px;
+            filter: drop-shadow(0 0 15px #d4af37);
+            animation: pulse-glow 2s infinite alternate;
         }
 
-        .flower-svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(20px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
-        @keyframes glow { 
-            from { filter: drop-shadow(0 0 10px #d4af37); } 
-            to { filter: drop-shadow(0 0 30px #d4af37); } 
+        @keyframes pulse-glow {
+            from { filter: drop-shadow(0 0 10px #d4af37); transform: scale(1); }
+            to { filter: drop-shadow(0 0 25px #d4af37); transform: scale(1.05); }
         }
 
         h1 {
-            font-size: 2.2rem;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin: 20px 0 5px;
-            color: #d4af37;
-            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            font-size: 2rem;
+            letter-spacing: 5px;
+            margin: 30px 0 10px;
+            text-shadow: 0 0 10px rgba(212,175,55,0.5);
         }
 
-        p {
-            color: #ffffff;
-            opacity: 0.6;
-            font-style: italic;
-            font-size: 1rem;
-            margin-bottom: 30px;
-        }
+        p { color: #fff; opacity: 0.7; font-style: italic; margin-bottom: 40px; }
 
-        .btn-play {
+        .btn {
             background: none;
             border: 1px solid #d4af37;
             color: #d4af37;
-            padding: 12px 30px;
-            font-family: 'Playfair Display', serif;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-size: 0.9rem;
             letter-spacing: 2px;
             cursor: pointer;
-            border-radius: 50px;
-            transition: all 0.3s;
-            animation: pulse 1.5s infinite;
+            transition: 0.3s;
         }
 
-        .btn-play:active { transform: scale(0.9); background: #d4af37; color: #000; }
-
-        @keyframes pulse { 
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 
-            70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } 
-        }
+        .btn:active { background: #d4af37; color: #000; }
     </style>
 </head>
 <body>
 
-    <div class="flower-container">
-        <svg class="flower-svg" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-            <path d="M100 280 Q100 220 100 160" stroke="#d4af37" stroke-width="3" fill="none" stroke-linecap="round"/>
-            <path d="M100 160 Q60 140 40 160 Q60 180 100 160" fill="#d4af37" opacity="0.7"/>
-            <path d="M100 160 Q140 140 160 160 Q140 180 100 160" fill="#d4af37" opacity="0.7"/>
-            <path d="M100 160 C70 100 30 110 30 150 C30 80 80 40 100 80 C120 40 170 80 170 150 C170 110 130 100 100 160" fill="#d4af37"/>
-            <circle cx="100" cy="115" r="18" fill="#000" stroke="#d4af37" stroke-width="1.5"/>
-            <circle cx="100" cy="115" r="6" fill="#d4af37">
-                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
-                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite" />
-            </circle>
-        </svg>
-    </div>
+    <svg class="flower" viewBox="0 0 200 200">
+        <path d="M100 180 Q100 140 100 100" stroke="#d4af37" stroke-width="3" fill="none"/>
+        <path d="M100 100 C70 60 20 70 20 110 C20 150 70 160 100 100Z" fill="#d4af37" opacity="0.8"/>
+        <path d="M100 100 C130 60 180 70 180 110 C180 150 130 160 100 100Z" fill="#d4af37" opacity="0.8"/>
+        <path d="M100 100 C80 40 120 40 100 100Z" fill="#d4af37"/>
+        <circle cx="100" cy="90" r="10" fill="#000" stroke="#d4af37"/>
+    </svg>
 
-    <h1>Erika te amo</h1>
-    <p>Nadie va a pensar en ti mejor que yo - Kevin Kaarl</p>
+    <h1>ERIKA TE AMO</h1>
+    <p>Piel Canela - Cuco </p>
 
-    <button class="btn-play" onclick="playMusic()" id="btnText">TOCAR PARA TI 🌹</button>
+    <button class="btn" onclick="play()">TOCAR PARA TI 🌹</button>
 
     <audio id="musica" loop>
-        <source src="https://files.catbox.moe/0v74ly.mp3" type="audio/mpeg">
+        <source src="Cuco%20-%20Piel%20Canela%20(Audio)%20-%20(320%20Kbps).mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        function playMusic() {
-            var audio = document.getElementById("musica");
-            audio.load();
-            audio.play().then(() => {
-                document.getElementById("btnText").innerHTML = "NUESTRA CANCIÓN ✨";
-                document.getElementById("btnText").style.animation = "none";
-            }).catch(function(error) {
-                console.log("Error:", error);
-                alert("Intenta tocar el botón de nuevo");
-            });
+        function play() {
+            const audio = document.getElementById('musica');
+            audio.play();
+            document.querySelector('.btn').innerHTML = "NUESTRA CANCIÓN ✨";
         }
     </script>
 </body>
