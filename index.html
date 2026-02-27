@@ -20,7 +20,7 @@
             position: relative;
         }
 
-        /* Flor con movimiento suave */
+        /* Flor con movimiento de viento */
         .flower-wrapper {
             position: relative;
             animation: sway 6s ease-in-out infinite;
@@ -39,7 +39,7 @@
             filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.6));
         }
 
-        /* Pasto denso en la base */
+        /* Pasto denso que cubre el borde inferior */
         .grass-container {
             position: absolute;
             bottom: -15px;
@@ -79,7 +79,7 @@
             z-index: 1;
         }
 
-        /* Estrellas */
+        /* Efecto de estrellas al activar */
         .sparkle {
             position: absolute;
             background: #fff;
@@ -156,7 +156,7 @@
     <button class="btn" onclick="play()">TOCAR PARA TI 🌹</button>
 
     <audio id="musica" loop>
-        <source src="Hanael22/Eri/PielCanela.mp3" type="audio/mpeg">
+        <source src="PielCanela.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -183,7 +183,7 @@
 
         function play() {
             const audio = document.getElementById('musica');
-            audio.play();
+            audio.play().catch(e => console.log("Error de audio:", e));
             document.querySelector('.btn').innerHTML = "NUESTRA CANCIÓN ✨";
             setInterval(createSparkle, 60);
         }
