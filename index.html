@@ -156,7 +156,7 @@
     <button class="btn" onclick="play()">TOCAR PARA TI 🌹</button>
 
     <audio controls autoplay loop>
-        <source src="PielCanela.mp3.mpeg" type="audio/mpeg">
+        <source src="PielCanela.mp3" type="audio/mpeg">
     </audio>
 
     <script>
@@ -184,7 +184,7 @@
         function play() {
             const audio = document.getElementById('musica');
             audio.play().catch(e => console.log("Error de audio:", e));
-            document.querySelector('.btn').innerHTML = "NUESTRA CANCIÓN ✨";
+            document.querySelector('.btn').innerHTML = "TE AMO MI PECHOCHA ✨";
             setInterval(createSparkle, 60);
         }
     </script>
